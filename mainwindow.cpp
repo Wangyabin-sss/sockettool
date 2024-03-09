@@ -124,9 +124,15 @@ void MainWindow::on_pushButton_clicked()
                 int port = ui->lineEdit_2->text().toInt();
                 if(port<65535&&port>0)
                 {
-                    tcpc.tcpclient_connect(ui->lineEdit->text(),port);
+                    bool ret = tcpc.tcpclient_connect(ui->lineEdit->text(),port);
                     connect(&tcpc,&TcpClient::TcpClient_recv_data,this,&MainWindow::tcpc_recv_data);
                     connect(&tcpc,&TcpClient::TcpClient_dis_connect,this,&MainWindow::tcpc_dis_connect);
+                    std::cout<<ret<<std::endl;
+                    if(!ret)
+                    {
+                        QMessageBox::warning(this,"error","connect server timeout");
+                        this->on_pushButton_clicked();
+                    }
                 }
                 else
                     QMessageBox::warning(this,"error","port error");

@@ -6,11 +6,14 @@ TcpClient::TcpClient()
 
 }
 
-void TcpClient::tcpclient_connect(QString ip,int port)
+bool TcpClient::tcpclient_connect(QString ip,int port)
 {
     socket.connectToHost(ip,port);
+    bool isconnect = socket.waitForConnected(1500);//等待直到连接成功
+
     connect(&socket,&QTcpSocket::readyRead,this,&TcpClient::tcpclient_recv);
     connect(&socket,&QTcpSocket::disconnected,this,&TcpClient::tcpclient_disconnect);
+    return isconnect;
 }
 
 

@@ -11,7 +11,7 @@ class TcpClient : public QObject
 public:
     TcpClient();
 
-    void tcpclient_connect(QString ip,int port);
+    bool tcpclient_connect(QString ip,int port);
     void tcpclient_close();
     int tcpclient_send(QString data);
     void tcpclient_recv();
