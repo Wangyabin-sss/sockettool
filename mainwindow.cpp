@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->startbutton->setText("start");
     ui->lineEdit->setText("127.0.0.1");
     ui->lineEdit_2->setText("8099");
+
+    QMessageBox::warning(this,"info","如果开启了VPN\n请先关闭!!!");
 }
 
 MainWindow::~MainWindow()
