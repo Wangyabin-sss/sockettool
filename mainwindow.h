@@ -24,8 +24,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_2_clicked();
-    void on_pushButton_clicked();
     void on_msglog_currentIndexChanged(int index);
 
     void tcps_new_connect(QString ip,int port);
@@ -33,14 +31,22 @@ private slots:
     void tcps_dis_connect(QString ip,int port);
 
     void on_tooltype_currentIndexChanged(int index);
+    void put_text_msglog(std::string data);
 
     void tcpc_recv_data(QString data);
     void tcpc_dis_connect();
+
+    void on_startbutton_clicked();
+
+    void on_sendbutton_clicked();
+
+    void on_tooltypemsg_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
     TcpServer tcps;
     TcpClient tcpc;
+    std::vector<std::string> senddatas;
 
 };
 #endif // MAINWINDOW_H
